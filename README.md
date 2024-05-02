@@ -1,30 +1,14 @@
-# React + TypeScript + Vite
+![alt text](https://github.com/Bertodemus/catalist/blob/main/src/assets/cathead.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## A small web application that allows you to create a cat!
+With Cat-A-List, you can select various options for your cats appearance and then save it... to a list... because that's fun.
 
-Currently, two official plugins are available:
+### What is actually going on here?
+This is a small practice app that is inteded to keep me coding, practicing, and problem solving. I hope to cover everything from front end to back-end with this little app. I will also make room for permanent storage and possibly include user creation/auth.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Current Tech Stack:
+- React + TypeScript + Vite - Front End
+- MobX - State Management
+- Nest JS - Back-End
+- Postgres - Permanent Storage
+- Supabase (or possibly pocketbase or Appwrite) - Hosting / Auth
