@@ -29,21 +29,25 @@ export const Home: React.FC = observer(() => {
       <div className={classes.optionsWrap}>
         <CatName label="NAME" />
         <Selector
-          id="type"
+          attribute="type"
           label="TYPE"
           options={Object.values(TypeOfCatEnum)}
         />
         <Selector
-          id="color"
+          attribute="color"
           label="COLOR"
           options={Object.values(ColorOfCatEnum)}
         />
         <Selector
-          id="size"
+          attribute="size"
           label="SIZE"
           options={Object.values(SizeOfCatEnum)}
         />
-        <Selector id="hat" label="HAT" options={Object.values(TypeOfHatEnum)} />
+        <Selector
+          attribute="hat"
+          label="HAT"
+          options={Object.values(TypeOfHatEnum)}
+        />
       </div>
       <div>
         <CatView label="CREATE MEOW!" />

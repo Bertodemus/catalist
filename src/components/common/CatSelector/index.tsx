@@ -7,7 +7,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { useStore } from '../../../stores';
-import React from 'react';
+import React, { useState } from 'react';
 
 export interface CatSelectorProps {
   label: string;
@@ -17,6 +17,8 @@ export const CatSelector: React.FC<CatSelectorProps> = observer(({ label }) => {
   const { catStore } = useStore();
   const classes = useStyles();
 
+  const [selectedId, setSelectedId] = useState<string>('');
+
   const createListOfOptions = () => {
     if (catStore.allTheCats.size === 0) {
       return (
@@ -25,10 +27,10 @@ export const CatSelector: React.FC<CatSelectorProps> = observer(({ label }) => {
         </MenuItem>
       );
     } else {
-      const list = catStore.getAllCats().map((opt) => {
+      const list = catStore.getAllCats().map((cat) => {
         return (
-          <MenuItem key={opt.id} value={opt.id}>
-            {opt.cat.name}
+          <MenuItem key={cat.id} value={cat.id}>
+            {cat.cat.name}
           </MenuItem>
         );
       });
@@ -37,11 +39,12 @@ export const CatSelector: React.FC<CatSelectorProps> = observer(({ label }) => {
   };
 
   const handleChange = (event: SelectChangeEvent) => {
-    catStore.setSelectedCat(event.target.value);
-    const currentCat = catStore.getCat(parseInt(event.target.value));
+    const catId = event.target.value;
+    setSelectedId(catId);
+    const selectedCat = catStore.getCat(Number(catId));
 
-    if (currentCat) {
-      catStore.setWholeAssTempCat(currentCat);
+    if (selectedCat) {
+      catStore.setTempCat({ ...selectedCat });
     }
   };
 
@@ -51,7 +54,7 @@ export const CatSelector: React.FC<CatSelectorProps> = observer(({ label }) => {
       <FormControl className={classes.selectorFormWrap} size="small">
         <Select
           id={label}
-          value={catStore.selectedCat}
+          value={selectedId}
           displayEmpty
           onChange={handleChange}
         >

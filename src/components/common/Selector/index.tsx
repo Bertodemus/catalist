@@ -20,7 +20,7 @@ import {
 } from '../../../types';
 
 export interface SelectorProps {
-  id?: string;
+  attribute?: string;
   label: string;
   options:
     | TypeOfCatEnum[]
@@ -30,7 +30,7 @@ export interface SelectorProps {
 }
 
 export const Selector: React.FC<SelectorProps> = observer(
-  ({ id = 'None', label, options }) => {
+  ({ attribute = 'None', label, options }) => {
     const { catStore } = useStore();
     const classes = useStyles();
 
@@ -43,18 +43,21 @@ export const Selector: React.FC<SelectorProps> = observer(
     });
 
     const handleChange = (event: SelectChangeEvent) => {
-      switch (id) {
+      const { value } = event.target;
+      if (!attribute) return;
+
+      switch (attribute) {
         case 'type':
-          catStore.setTypeOfCat(event.target.value as TypeOfCat);
+          catStore.setTempCat({ type: value as TypeOfCat });
           break;
         case 'color':
-          catStore.setColorOfCat(event.target.value as ColorOfCat);
+          catStore.setTempCat({ color: value as ColorOfCat });
           break;
         case 'size':
-          catStore.setSizeOfCat(event.target.value as SizeOfCat);
+          catStore.setTempCat({ size: value as SizeOfCat });
           break;
         case 'hat':
-          catStore.setCatHat(event.target.value as TypeOfHat);
+          catStore.setTempCat({ hat: value as TypeOfHat });
           break;
       }
     };
@@ -65,11 +68,7 @@ export const Selector: React.FC<SelectorProps> = observer(
         <FormControl className={classes.selectorFormWrap} size="small">
           <Select
             id={label}
-            value={
-              (catStore.getCat(+catStore.selectedCat) || catStore.tempCat)[
-                id as keyof Cat
-              ]
-            }
+            value={catStore.tempCat[attribute as keyof Cat]}
             onChange={handleChange}
           >
             {listOfOptions}

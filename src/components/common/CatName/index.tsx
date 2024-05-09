@@ -12,7 +12,7 @@ export const CatName: React.FC<CatNameProps> = observer(({ label }) => {
   const classes = useStyles();
 
   const handleChange = (event: { target: { value: string } }) => {
-    catStore.setCatName(event.target.value);
+    catStore.setTempCat({ name: event.target.value });
   };
 
   return (
@@ -26,6 +26,7 @@ export const CatName: React.FC<CatNameProps> = observer(({ label }) => {
             style: { textAlign: 'center', paddingRight: '32px' },
           }}
           sx={{ width: '100%' }}
+          value={catStore.tempCat.name}
           onChange={handleChange}
         />
       </div>

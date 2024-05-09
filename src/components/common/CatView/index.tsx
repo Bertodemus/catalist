@@ -9,10 +9,9 @@ export interface CatViewProps {
 export const CatView: React.FC<CatViewProps> = observer(({ label }) => {
   const classes = useStyles();
   const { catStore } = useStore();
+
   const handleClick = () => {
-    const id = catStore.allTheCats.size + 1;
-    catStore.addCat(id, catStore.tempCat);
-    catStore.setSelectedCat(id.toString());
+    catStore.addCat(catStore.allTheCats.size + 1, catStore.tempCat);
   };
 
   return (
